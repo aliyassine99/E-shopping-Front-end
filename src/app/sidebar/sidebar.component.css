@@ -1,0 +1,6 @@
+.navbar-list a{
+  color: white;
+}
+.navbar-list a:hover{
+  color: rgb(199, 199, 199) !important;
+}
