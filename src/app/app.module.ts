@@ -11,14 +11,21 @@ import { Route, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './exceptions/page-not-found/page-not-found.component';
 import { ProductDetailComponent } from './product/products-list/product-detail/product-detail.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { CartStatusComponent } from './header/cart-status/cart-status.component';
+import { CartDetailComponentComponent } from './cart/cart-detail-component/cart-detail-component.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Route[] = [
   {path: "search/:keyword", component: ProductsListComponent},
   {path: "category/:id", component: ProductsListComponent},
   {path: "products", component: ProductsListComponent},
   {path: "products/:id", component: ProductDetailComponent},
+  {path : "cart", component: CartDetailComponentComponent},
+  {path: "checkout", component: CheckoutComponent},
   {path: "", redirectTo:"/products", pathMatch: "full"},
-  {path: "**", component: PageNotFoundComponent, pathMatch: "full"}
+  {path: "**", component: PageNotFoundComponent, pathMatch: "full"},
+
 ];
 
 @NgModule({
@@ -28,6 +35,9 @@ const routes: Route[] = [
     SidebarComponent,
     HeaderComponent,
     ProductDetailComponent,
+    CartStatusComponent,
+    CartDetailComponentComponent,
+    CheckoutComponent,
 
 
   ],
@@ -35,7 +45,8 @@ const routes: Route[] = [
     BrowserModule,
     AppRoutingModule, HttpClientModule,
     RouterModule.forRoot(routes),
-    NgbModule
+    NgbModule, FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

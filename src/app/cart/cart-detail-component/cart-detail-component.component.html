@@ -1,0 +1,48 @@
+<div class="container mt-5" >
+
+<table class="table table-bordered" style="position: relative; top: 50px">
+  <tr>
+  <th width="20%">Product Image</th>
+  <th width="50%">Product Detail</th>
+  <th width="30%"></th></tr>
+  <tr *ngFor="let cartItem of cartItems">
+    <td><img src="{{cartItem.imageUrl}}"></td>
+    <td><p>{{ cartItem.name }}</p>
+    <p>{{ cartItem.unitPrice }}</p></td>
+    <td>
+      <div class="items">
+
+        <div class="row no-gutters">
+          <label>Quantity :</label>
+          <div class="col">
+            <button (click)="incrementQuantity(cartItem)" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+          </div>
+
+          <div class="col ml-4 mr-2">{{ totalQuantity }}</div>
+          <div class="col">
+            <button (click)="decrementQuantity(cartItem)" class="btn btn-primary"><i class="fa fa-minus"></i></button>
+          </div>
+
+        </div>
+        <button (click)="removeCartItem(cartItem)" class="btn btn-primary mt-4">Remove</button>
+      </div>
+
+          <p>Subtotal : {{ cartItem.quantity * cartItem.unitPrice | currency: "USD"}}</p></td>
+
+  </tr>
+<tr *ngIf="cartItems.length != 0">
+  <td  colspan="2"></td>
+  <td style="font-weight: bold">
+    <p>Total Quantity: {{ totalQuantity }}</p>
+    <p>Shipping free</p>
+   <p>Total Price : {{ totalPrice | currency: "USD" }}</p>
+    <button style="background-color: #205b8d" class="btn btn-primary" routerLink="/checkout" >Checkout</button>
+
+  </td>
+  </tr>
+  <div *ngIf="cartItems.length == 0" class="alert alert-warning" role="alert">No products</div>
+
+
+
+</table>
+</div>
